@@ -1,0 +1,37 @@
+FROM jessie:latest
+
+# install and setup jdk
+ENV JDK_PACKAGE jdk-8u112-linux-x64.tar.gz
+ENV JDK_DIRECTORY jdk1.8.0_112
+
+COPY ${JDK_PACKAGE} /tmp/
+RUN mkdir -p /usr/lib/jvm && cd /usr/lib/jvm \
+  && tar --numeric-owner -xf /tmp/${JDK_PACKAGE} \
+  && chown -R root:root ${JDK_DIRECTORY} \
+  && ln -s ${JDK_DIRECTORY} jdk
+RUN echo 'export JAVA_HOME=/usr/lib/jvm/jdk' >> /etc/profile \
+  && echo 'export JRE_HOME=${JAVA_HOME}/jre' >> /etc/profile
+RUN for cmd in jar \
+  jarsigner \
+  java \
+  javac \
+  javadoc \
+  javah \
+  javap \
+  jdb \
+  jdeps \
+  jhat \
+  jinfo \
+  jjs \
+  jmap \
+  jmc \
+  jps \
+  jstack \
+  jstat \
+  jstatd \
+  ; do update-alternatives --install /usr/bin/${cmd} ${cmd} \
+  /usr/lib/jvm/jdk/bin/${cmd} 300; done
+RUN rm /tmp/${JDK_PACKAGE}
+
+RUN java -version
+
