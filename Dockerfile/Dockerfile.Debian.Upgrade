@@ -1,0 +1,5 @@
+FROM jessie:latest
+
+COPY sources.list /etc/apt/
+RUN  apt-get update && apt-get upgrade -y
+
