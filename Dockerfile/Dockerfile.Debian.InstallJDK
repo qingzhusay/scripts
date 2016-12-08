@@ -9,8 +9,8 @@ RUN mkdir -p /usr/lib/jvm && cd /usr/lib/jvm \
   && tar --numeric-owner -xf /tmp/${JDK_PACKAGE} \
   && chown -R root:root ${JDK_DIRECTORY} \
   && ln -s ${JDK_DIRECTORY} jdk
-RUN echo 'export JAVA_HOME=/usr/lib/jvm/jdk' >> /etc/profile \
-  && echo 'export JRE_HOME=${JAVA_HOME}/jre' >> /etc/profile
+RUN echo 'export JAVA_HOME=/usr/lib/jvm/jdk' >> /etc/bash.bashrc \
+  && echo 'export JRE_HOME=${JAVA_HOME}/jre' >> /etc/bash.bashrc
 RUN for cmd in jar \
   jarsigner \
   java \
