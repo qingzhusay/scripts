@@ -1,4 +1,4 @@
-FROM jessie:latest
+FROM debian:latest
 
 # install and setup jdk
 ENV JDK_PACKAGE jdk-8u112-linux-x64.tar.gz
