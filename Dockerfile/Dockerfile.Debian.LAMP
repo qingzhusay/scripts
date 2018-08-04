@@ -1,0 +1,11 @@
+FROM debian:latest
+
+ADD sources.list /etc/apt/
+
+RUN apt-get -y update
+RUN apt-get -y install php php-mysqlnd mariadb-server apache2
+
+#RUN echo "ServerName $(ip route get 8.8.8.8 | awk '{print $NF; exit}')" >> /etc/apache2/apache2.conf
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
+EXPOSE 3306 80
