@@ -13,3 +13,5 @@ $ docker build -t bwapp .
 ``` bash
 $ docker run -it -p 80:80 --name bwapp bwapp
 ```
+
+visit `http://localhost/bWAPP/login.php` and the default username/password is `bee`/`bug`
