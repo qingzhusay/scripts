@@ -6,18 +6,22 @@ RUN /etc/init.d/mysql start && \
   mysql -uroot -pbug -e "grant all privileges on *.* to 'alice'@'%' identified by 'loveZombies';" && \
   mysql -ualice -ploveZombies -e "show databases;"
 
-WORKDIR /var/www/html
-
 COPY ./bwapp.conf /etc/supervisor/conf.d/bwapp.conf
 
-RUN apt-get -y update
-RUN apt-get -y install wget unzip curl supervisor
+# copy
+ADD bWAPP_latest.zip /var/www/html/
 
-RUN wget https://nchc.dl.sourceforge.net/project/bwapp/bWAPP/bWAPP_latest.zip && \
-  unzip bWAPP_latest.zip && rm bWAPP_latest.zip && rm /var/www/html/index.html
+# download
+#RUN wget https://nchc.dl.sourceforge.net/project/bwapp/bWAPP/bWAPP_latest.zip
+
+RUN apt-get -y update --fix-missing && apt-get -y install unzip curl supervisor
+
+WORKDIR /var/www/html
+RUN unzip bWAPP_latest.zip && rm bWAPP_latest.zip && rm /var/www/html/index.html
 
 RUN /etc/init.d/mysql restart && /etc/init.d/apache2 restart && \
-  curl http://127.0.0.1/bWAPP/install.php?install=yes 1> /dev/null
+  curl http://127.0.0.1/bWAPP/install.php?install=yes 1> /dev/null && \
+  echo "Success!"
 
 EXPOSE 80
 
