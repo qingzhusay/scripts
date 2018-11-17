@@ -1,17 +1,13 @@
-#### Installation
-
-must grant to 'root'@'localhost' identified by 'bug'
-
 #### To build
 
 ``` bash
-$ docker build -t bwapp .
+$ docker build -t dvwa .
 ```
 
 #### To run
 
 ``` bash
-$ docker run -it -p 80:80 --name bwapp bwapp
+$ docker run -it -p 80:80 --name dvwa dvwa
 ```
 
-visit `http://localhost/bWAPP/login.php` and the default username/password is `bee`/`bug`
+visit `http://localhost/dvwa/setup.php` and the default username/password is `admin`/`password`
