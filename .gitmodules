@@ -1,0 +1,3 @@
+[submodule "Dockerfile/dvwa/dvwa"]
+	path = Dockerfile/dvwa/dvwa
+	url = https://github.com/ethicalhack3r/DVWA.git

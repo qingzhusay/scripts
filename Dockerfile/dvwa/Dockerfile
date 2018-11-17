@@ -3,7 +3,7 @@ FROM debian:lamp
 WORKDIR /var/www/html
 
 # pre-setup
-ADD DVWA-master.zip dvwa/
+ADD dvwa dvwa
 ADD setup.sh ./
 
 # setup
