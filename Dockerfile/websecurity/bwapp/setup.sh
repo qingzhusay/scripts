@@ -7,10 +7,12 @@ apt-get -y install unzip curl supervisor
 apt-get clean && apt-get autoremove
 
 # note: pushd won't work
-rm /var/www/html/index.html
+if [ -f /var/www/html/index.html ]; then
+  rm /var/www/html/index.html
+fi
 
 cd /var/www/html
-unzip bWAPP_latest.zip && rm bWAPP_latest.zip
+unzip bWAPP_latest.zip
 chown -R www-data:www-data bWAPP
 
 # setup mysql
@@ -28,5 +30,5 @@ service mysql restart
 # installation
 curl http://127.0.0.1/bWAPP/install.php?install=yes 1> /dev/null
 
-echo "Install bwapp success!"
+echo "setup bwapp success!"
 

@@ -7,8 +7,9 @@ apt-get -y install curl supervisor php-gd
 apt-get clean && apt-get autoremove
 
 # note: pushd won't work
-
-rm /var/www/html/index.html
+if [ -f /var/www/html/index.html ]; then
+  rm /var/www/html/index.html
+fi
 
 # config dvwa
 cd /var/www/html
@@ -19,8 +20,7 @@ chown -R www-data:www-data dvwa
 
 # config php
 cd /etc/php/7.0/apache2
-perl -pi -e 's/allow_url_include.*$/allow_url_include = On/' php.ini
-
+perl -pi -e 's/allow_url_include = Off/allow_url_include = On/' php.ini
 
 # setup mysql
 service mysql restart
@@ -32,5 +32,6 @@ mysql -udvwa -pp@ssw0rd -e "show databases;"
 # check
 service apache2 restart
 service mysql restart
-echo "Success!"
+
+echo "setup dvwa success!"
 

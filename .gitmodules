@@ -1,3 +1,6 @@
 [submodule "dvwa"]
 	path = Dockerfile/websecurity/dvwa/dvwa
 	url = https://github.com/ethicalhack3r/DVWA.git
+[submodule "Dockerfile/websecurity/sqli-labs/sqli-labs"]
+	path = Dockerfile/websecurity/sqli-labs/sqli-labs
+	url = https://github.com/Audi-1/sqli-labs.git
