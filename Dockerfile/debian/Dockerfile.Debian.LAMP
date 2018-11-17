@@ -3,7 +3,7 @@ FROM debian:latest
 ADD sources.list /etc/apt/
 
 RUN apt-get -y update
-RUN apt-get -y install apache2 mysql-server php php-mysqlnd php-mysqli
+RUN apt-get -y install apache2 mysql-server php php-mysqlnd php-mysqli && apt-get clean autoremove
 
 #RUN echo "ServerName $(ip route get 8.8.8.8 | awk '{print $NF; exit}')" >> /etc/apache2/apache2.conf
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf

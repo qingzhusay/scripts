@@ -14,7 +14,7 @@ ADD bWAPP_latest.zip /var/www/html/
 # download
 #RUN wget https://nchc.dl.sourceforge.net/project/bwapp/bWAPP/bWAPP_latest.zip
 
-RUN apt-get -y update --fix-missing && apt-get -y install unzip curl supervisor
+RUN apt-get -y update --fix-missing && apt-get -y install unzip curl supervisor && apt-get clean autoremove
 
 WORKDIR /var/www/html
 RUN unzip bWAPP_latest.zip && rm bWAPP_latest.zip && rm /var/www/html/index.html

@@ -2,7 +2,9 @@
 
 set -e
 
-apt-get -y update && apt-get -y install curl supervisor php-gd
+apt-get -y update
+apt-get -y install curl supervisor php-gd
+apt-get clean && apt-get autoremove
 
 # note: pushd won't work
 
